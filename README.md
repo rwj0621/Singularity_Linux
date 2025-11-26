@@ -50,7 +50,7 @@ conda 将 Singularity 及其所有依赖库都安装在你的**个人用户目�
         exit
 # 三、构建自己的容器
 ## 1. Singularity基础知识
-build可以生产两种不同格式的容器
+### build可以生产两种不同格式的容器
 * SIF（Singularity Image File）：压缩后的只读的Singularity镜像文件，是生产使用的主要形式。确保了容器的可复现性和验证性。
 * Sandbox ：可写的容器存在形式，是文件系统中的一个目录，常用于开发或者创建自己的容器，是开发使用的主要形式。
 两种容器格式之间的转换
