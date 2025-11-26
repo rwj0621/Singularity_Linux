@@ -75,16 +75,45 @@ Singularity采用单次构建机制，相比Docker的分层缓存构建，在调
 * **sif 转 sandbox** 通过以下命令，将只读的 ubuntu.sif 镜像转换为一个名为 ubuntu_sandbox 的可写目录，以便在容器内自由安装软件或修改配置。
   
         singularity build --sandbox ./ubuntu_sandbox/ ubuntu.sif
-* **进入可写的沙盒环境** 通过以下命令，以可写模式启动一个交互式 Shell，进入之前构建的 ubuntu_sandbox 沙盒容器，允许您直接在其中安装软件或修改文件。
+* **进入可写的沙盒环境** 通过以下命令，以可写模式启动一个交互式 Shell，进入之前构建的 ubuntu_sandbox 沙盒容器，允许您直接在其中安装软件或修改文件。conda环境对挂载有限制，必须通过一下步骤进行。
 
-        singularity shell --writable ./ubuntu_sandbox/
+        # 使用完全隔离模式进入容器（不挂载任何外部目录）
+        singularity shell --no-home --containall --writable /data/renweijie/ubuntu/
+        #在容器内创建所需的目录
+        mkdir -p /data
+        #退出容器
+        exit
+        # 测试绑定挂载
+        singularity shell --bind /data/renweijie:/data --writable /data/renweijie/ubuntu/
 * **基础系统配置**
     * **设置环境变量** 告诉 apt 工具以非交互模式运行，安装过程中不会弹出任何需要用户输入的对话框（如时区选择、服务配置等），实现全自动安装
 
-            Singularity> export DEBIAN_FRONTEND=noninteractive
+            export DEBIAN_FRONTEND=noninteractive
     * **设置语言环境** 设置系统语言和字符编码为 C.UTF-8，避免因语言环境导致的警告信息，确保命令行输出稳定一致
 
-            Singularity> export LANG=C.UTF-8 LC_ALL=C.UTF-8
+            export LANG=C.UTF-8 LC_ALL=C.UTF-8
+* **基础系统配置**
+
+        apt-get update && apt-get install -y \
+        curl \
+        wget \
+        vim \
+        nano \
+        git \
+        htop \
+        net-tools \
+        iputils-ping \
+        dnsutils \
+        procps \
+        lsb-release \
+        ca-certificates \
+        gnupg \
+        software-properties-common \
+        && rm -rf /var/lib/apt/lists/*
+* **基础系统配置**
+* **基础系统配置**
+* **基础系统配置**
+* **基础系统配置**
 
 
         
