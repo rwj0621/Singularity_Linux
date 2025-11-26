@@ -12,5 +12,11 @@ conda 将 Singularity 及其所有依赖库都安装在你的**个人用户目�
 * 查看singularity 版本
   
         singularity --version
+# 二、拉取镜像
+## 1.从Singularity自己的官方镜像库拉取
+从 Singularity 自己的官方镜像库下载一个有趣的测试镜像，用来验证你的 Singularity 安装是否成功、网络是否通畅。lolcow 是一个经典测试镜像，它会显示一头牛的 ASCII 艺术图案和一条随机有趣的格言/笑话。
+
+        singularity pull library://lolcow
+
 
 
